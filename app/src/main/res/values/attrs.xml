@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PlusMinusView">
+        <attr name="pmv_title" format="string" />"
+        <attr name="pmv_count" format="integer" />"
+    </declare-styleable>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:PlusMinusView="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.nanorus.trainproject.CustomViewActivity">
+
+    <com.example.nanorus.trainproject.custom_views.PlusMinusView
+        android:id="@+id/activity_custom_view_plus_minus"
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        PlusMinusView:pmv_title="Надпись в xml"
+        PlusMinusView:pmv_count="0"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp"/>
+
+
+</RelativeLayout>
