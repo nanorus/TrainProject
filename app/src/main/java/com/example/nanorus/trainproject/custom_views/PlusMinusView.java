@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -14,7 +13,6 @@ import com.example.nanorus.trainproject.R;
 
 public class PlusMinusView extends RelativeLayout {
 
-    private RelativeLayout mRootLayout;
     private TextView mTvTitle;
     private TextView mTvCount;
     private Button mBtnPlus;
@@ -31,11 +29,10 @@ public class PlusMinusView extends RelativeLayout {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.view_plus_minus, this, true);
-        mRootLayout = (RelativeLayout) getChildAt(0);
-        mTvTitle = (TextView) mRootLayout.getChildAt(0);
-        mTvCount = (TextView) mRootLayout.getChildAt(1);
-        mBtnPlus = (Button) ((LinearLayout) mRootLayout.getChildAt(2)).getChildAt(0);
-        mBtnMinus = (Button) ((LinearLayout) mRootLayout.getChildAt(2)).getChildAt(1);
+        mTvTitle = findViewById(R.id.view_plus_minus_tv_title);
+        mTvCount = findViewById(R.id.view_plus_minus_tv_count);
+        mBtnPlus = findViewById(R.id.view_plus_minus_btn_plus);
+        mBtnMinus = findViewById(R.id.view_plus_minus_btn_minus);
 
         mTvTitle.setText(title);
         mTvCount.setText(String.valueOf(mCount));
