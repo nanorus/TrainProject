@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".CustomViewActivity">
         </activity>
+        <activity android:name=".fragments_lifecycle.FragmentsLifecycleActivity">
+        </activity>
     </application>
 
 </manifest>
