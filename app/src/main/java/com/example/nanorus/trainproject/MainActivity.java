@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.nanorus.trainproject.dialogs.DialogsActivity;
 import com.example.nanorus.trainproject.fragments_lifecycle.FragmentsLifecycleActivity;
 
 import butterknife.BindView;
@@ -17,6 +18,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button mBtnCustomView;
     @BindView(R.id.activity_main_btn_fragments_lifecycle)
     Button mBtnFragmentsLifecycle;
+    @BindView(R.id.activity_main_btn_dialogs)
+    Button mBtnDialogs;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mBtnCustomView.setOnClickListener(this);
         mBtnFragmentsLifecycle.setOnClickListener(this);
+        mBtnDialogs.setOnClickListener(this);
 
         showBoxingExample();
 
@@ -40,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.activity_main_btn_fragments_lifecycle:
                 startActivity(new Intent(this, FragmentsLifecycleActivity.class));
+                break;
+            case R.id.activity_main_btn_dialogs:
+                startActivity(new Intent(this, DialogsActivity.class));
                 break;
         }
     }

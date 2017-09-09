@@ -20,6 +20,10 @@
         </activity>
         <activity android:name=".fragments_lifecycle.FragmentsLifecycleActivity">
         </activity>
+        <activity android:name=".DifferentResourcesActivity">
+        </activity>
+        <activity android:name=".dialogs.DialogsActivity">
+        </activity>
     </application>
 
 </manifest>
