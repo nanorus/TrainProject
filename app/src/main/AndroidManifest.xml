@@ -24,6 +24,17 @@
         </activity>
         <activity android:name=".dialogs.DialogsActivity">
         </activity>
+        <activity android:name=".BroadCastRecieverTestingActivity">
+        </activity>
+
+        <service android:name=".service.TestBroadcastRecieverService">
+            <intent-filter>
+                <action android:name="service_test"/>
+            </intent-filter>
+        </service>
+
+        <activity android:name=".ImagesDpiActivity">
+        </activity>
     </application>
 
 </manifest>

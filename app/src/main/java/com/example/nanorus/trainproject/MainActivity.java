@@ -20,7 +20,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button mBtnFragmentsLifecycle;
     @BindView(R.id.activity_main_btn_dialogs)
     Button mBtnDialogs;
-
+    @BindView(R.id.activity_main_btn_broadcast)
+    Button mBtnBroadcast;
+    @BindView(R.id.activity_main_btn_images_dpi)
+    Button mImagesDpi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnCustomView.setOnClickListener(this);
         mBtnFragmentsLifecycle.setOnClickListener(this);
         mBtnDialogs.setOnClickListener(this);
+        mBtnBroadcast.setOnClickListener(this);
+        mImagesDpi.setOnClickListener(this);
 
         showBoxingExample();
 
@@ -48,6 +53,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.activity_main_btn_dialogs:
                 startActivity(new Intent(this, DialogsActivity.class));
+                break;
+            case R.id.activity_main_btn_broadcast:
+                startActivity(new Intent(this, BroadCastRecieverTestingActivity.class));
+                break;
+            case R.id.activity_main_btn_images_dpi:
+                startActivity(new Intent(this, ImagesDpiActivity.class));
                 break;
         }
     }
