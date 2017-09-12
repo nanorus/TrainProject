@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nanorus.trainproject.BroadCastRecieverTestingActivity">
+    tools:context="com.example.nanorus.trainproject.broadcast_eventbus.BroadCastRecieverTestingActivity">
 
     <Button
         android:id="@+id/activity_broadcast_btn_start"
@@ -42,4 +42,14 @@
         android:background="@android:color/holo_blue_light"
         android:padding="8dp"
         android:text="bind service"/>
+
+    <Button
+        android:id="@+id/activity_broadcast_btn_new_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_broadcast_btn_start_bind"
+        android:layout_marginTop="37dp"
+        android:layout_toLeftOf="@+id/activity_broadcast_btn_stop_bind"
+        android:layout_toStartOf="@+id/activity_broadcast_btn_stop_bind"
+        android:text="New activity"/>
 </RelativeLayout>

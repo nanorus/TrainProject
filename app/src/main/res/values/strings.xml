@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Train Project</string>
     <string name="services_broadcast_receiver"><![CDATA[Services & Broadcast receiver]]></string>
+    <string name="broadcast_eventbus"><![CDATA[Broadcast & EventBus]]></string>
 </resources>

@@ -1,15 +1,16 @@
 package com.example.nanorus.trainproject.service;
 
-import android.app.IntentService;
+import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-public class TestBroadcastRecieverService extends IntentService {
 
-    public TestBroadcastRecieverService() {
-        super("TestBroadcastRecieverService");
+public class TestNormalBroadcastRecieverService extends Service {
+    MyBinder mBinder;
+
+    public TestNormalBroadcastRecieverService() {
     }
 
 
@@ -20,6 +21,7 @@ public class TestBroadcastRecieverService extends IntentService {
         sendBroadcast(intent1);
         super.onCreate();
     }
+
 
     @Override
     public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
@@ -37,12 +39,6 @@ public class TestBroadcastRecieverService extends IntentService {
         super.onStart(intent, startId);
     }
 
-    @Override
-    protected void onHandleIntent(@Nullable Intent intent) {
-        Intent intent1 = new Intent("testing.broadcast.reciever.action");
-        intent1.putExtra("message", "onHandleIntent");
-        sendBroadcast(intent1);
-    }
 
     @Nullable
     @Override
@@ -50,7 +46,9 @@ public class TestBroadcastRecieverService extends IntentService {
         Intent intent1 = new Intent("testing.broadcast.reciever.action");
         intent1.putExtra("message", "onBind");
         sendBroadcast(intent1);
-        return new Binder();
+
+        mBinder = new MyBinder();
+        return mBinder;
     }
 
     @Override
@@ -58,7 +56,7 @@ public class TestBroadcastRecieverService extends IntentService {
         Intent intent1 = new Intent("testing.broadcast.reciever.action");
         intent1.putExtra("message", "onUnbind");
         sendBroadcast(intent1);
-        return false;
+        return true;
     }
 
     @Override
@@ -76,4 +74,27 @@ public class TestBroadcastRecieverService extends IntentService {
         sendBroadcast(intent1);
         super.onRebind(intent);
     }
+
+    public class MyBinder extends Binder {
+        private MyCallback mMyCallback;
+
+        public void setCallback(MyCallback myCallback) {
+            mMyCallback = myCallback;
+        }
+
+        public MyCallback getMyCallback() {
+            return mMyCallback;
+        }
+
+
+       public void slowAction() {
+                this.getMyCallback().showMessageFromCallback();
+        }
+
+    }
+
+    public interface MyCallback {
+        void showMessageFromCallback();
+    }
+
 }

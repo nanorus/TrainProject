@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.nanorus.trainproject.broadcast_eventbus.BroadCastRecieverTestingActivity;
+import com.example.nanorus.trainproject.broadcast_eventbus.BroadcastEventBusTrainingActivity;
 import com.example.nanorus.trainproject.dialogs.DialogsActivity;
 import com.example.nanorus.trainproject.fragments_lifecycle.FragmentsLifecycleActivity;
 
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button mBtnBroadcast;
     @BindView(R.id.activity_main_btn_images_dpi)
     Button mImagesDpi;
+    @BindView(R.id.activity_main_btn_broadcast_eventbus)
+    Button mBtnBroadCastEventbus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnDialogs.setOnClickListener(this);
         mBtnBroadcast.setOnClickListener(this);
         mImagesDpi.setOnClickListener(this);
+        mBtnBroadCastEventbus.setOnClickListener(this);
 
         showBoxingExample();
 
@@ -59,6 +64,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.activity_main_btn_images_dpi:
                 startActivity(new Intent(this, ImagesDpiActivity.class));
+                break;
+            case R.id.activity_main_btn_broadcast_eventbus:
+                startActivity(new Intent(this, BroadcastEventBusTrainingActivity.class));
                 break;
         }
     }
@@ -94,5 +102,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else
             System.out.println(b3 + " != " + b2);
     }
+
+    /*
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("testParcelable", new ParcelableTestPojo(5, "hello", 8.8));
+        ArrayList<NotSerializableTestClass> notSerializableList = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            NotSerializableTestClass notSerClass = new NotSerializableTestClass();
+            notSerClass.createNotSerializableClass();
+            notSerializableList.add(notSerClass);
+        }
+
+        outState.putSerializable("testSerializable", new SerializableTestPojo(5, "hello", 8.8, mImagesDpi, notSerializableList));
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+          ParcelableTestPojo parcelableTestPojo = savedInstanceState.getParcelable("testParcelable");
+          Toast.makeText(this, parcelableTestPojo.getB() + ": " + String.valueOf(parcelableTestPojo.getA()) + ", " + String.valueOf(parcelableTestPojo.getC()), Toast.LENGTH_SHORT).show();
+        SerializableTestPojo serializableTestPojo = (SerializableTestPojo) savedInstanceState.getSerializable("testSerializable");
+        Toast.makeText(this, serializableTestPojo.getB() + ": " + String.valueOf(serializableTestPojo.getA()) + ", " + String.valueOf(serializableTestPojo.getC()) +
+                        "\n" + serializableTestPojo.getImagesDpi().getText().toString() + "\n" +
+                        String.valueOf(serializableTestPojo.getNotSerializableTestClass().get(0).getI()) + " " +
+                        String.valueOf(serializableTestPojo.getNotSerializableTestClass().get(0).getNotSerializableTestClass().getI())
+                , Toast.LENGTH_SHORT).show();
+    }
+    */
 
 }

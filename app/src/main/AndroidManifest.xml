@@ -24,7 +24,7 @@
         </activity>
         <activity android:name=".dialogs.DialogsActivity">
         </activity>
-        <activity android:name=".BroadCastRecieverTestingActivity">
+        <activity android:name=".broadcast_eventbus.BroadCastRecieverTestingActivity">
         </activity>
 
         <service android:name=".service.TestBroadcastRecieverService">
@@ -33,7 +33,13 @@
             </intent-filter>
         </service>
 
+        <service android:name=".service.TestNormalBroadcastRecieverService">
+        </service>
         <activity android:name=".ImagesDpiActivity">
+        </activity>
+        <activity android:name=".broadcast_eventbus.BroadcastEventBusTrainingActivity">
+        </activity>
+        <activity android:name=".broadcast_eventbus.BroadcastEventBusSecondActivity">
         </activity>
     </application>
 

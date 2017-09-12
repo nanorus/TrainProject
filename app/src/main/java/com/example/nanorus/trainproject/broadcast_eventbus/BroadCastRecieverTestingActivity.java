@@ -1,4 +1,4 @@
-package com.example.nanorus.trainproject;
+package com.example.nanorus.trainproject.broadcast_eventbus;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -14,7 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.nanorus.trainproject.service.TestBroadcastRecieverService;
+import com.example.nanorus.trainproject.R;
+import com.example.nanorus.trainproject.service.TestNormalBroadcastRecieverService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,6 +28,9 @@ public class BroadCastRecieverTestingActivity extends AppCompatActivity implemen
     Button mBtnStopBind;
     @BindView(R.id.activity_broadcast_btn_start_bind)
     Button mBtnStartBind;
+    @BindView(R.id.activity_broadcast_btn_new_activity)
+    Button mBtnNewActivity;
+
 
     BroadcastReceiver mBroadcastReceiver;
 
@@ -48,11 +52,16 @@ public class BroadCastRecieverTestingActivity extends AppCompatActivity implemen
         };
         IntentFilter intentFilter = new IntentFilter("testing.broadcast.reciever.action");
         registerReceiver(mBroadcastReceiver, intentFilter);
-        mIntent = new Intent(this, TestBroadcastRecieverService.class);
+        mIntent = new Intent(this, TestNormalBroadcastRecieverService.class);
+        startService(mIntent);
         mServiceConnection = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+                System.out.println("Service Connected");
                 Snackbar.make(mBtnStart.getRootView(), "Service Connected", Snackbar.LENGTH_SHORT).show();
+                TestNormalBroadcastRecieverService.MyBinder binder = (TestNormalBroadcastRecieverService.MyBinder) iBinder;
+                binder.setCallback(() -> Snackbar.make(mBtnStart.getRootView(), "Message from callback", Snackbar.LENGTH_SHORT).show());
+                binder.slowAction();
             }
 
 
@@ -65,7 +74,7 @@ public class BroadCastRecieverTestingActivity extends AppCompatActivity implemen
         mBtnStart.setOnClickListener(this);
         mBtnStartBind.setOnClickListener(this);
         mBtnStopBind.setOnClickListener(this);
-
+        mBtnNewActivity.setOnClickListener(this);
     }
 
     @Override
@@ -82,6 +91,9 @@ public class BroadCastRecieverTestingActivity extends AppCompatActivity implemen
                 if (mBounded)
                     unbindService(mServiceConnection);
                 mBounded = false;
+                break;
+            case R.id.activity_broadcast_btn_new_activity:
+                startActivity(new Intent(this, BroadcastEventBusSecondActivity.class));
                 break;
         }
     }
