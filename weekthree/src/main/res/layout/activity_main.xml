@@ -23,19 +23,7 @@
                 android:layout_margin="8dp"
                 android:background="@color/colorPrimaryDark"
                 android:padding="8dp"
-                android:text="2 фрагмента - список и детальная информация, запрос в сервисе и возврат результата обратно"
-                android:textColor="@android:color/white"
-                android:textSize="10sp"
-                tools:elevation="8dp"/>
-
-            <Button
-                android:id="@+id/main_btn_task_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@color/colorPrimaryDark"
-                android:padding="8dp"
-                android:text="Сохранение состояния окна и модели на onSaveInstanceState"
+                android:text="Маршруты. Запрос. Список. Фрагменты. Адаптивный дизайн. Сохранение состояния."
                 android:textColor="@android:color/white"
                 android:textSize="10sp"
                 tools:elevation="8dp"/>
@@ -48,19 +36,6 @@
                 android:background="@color/colorPrimaryDark"
                 android:padding="8dp"
                 android:text="realm "
-                android:textColor="@android:color/white"
-                android:textSize="10sp"
-                tools:elevation="8dp"/>
-
-            <Button
-                android:id="@+id/main_btn_task_4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/main_btn_task_3"
-                android:layout_margin="8dp"
-                android:background="@color/colorPrimaryDark"
-                android:padding="8dp"
-                android:text="Адаптивный дизайн для планшета и телефона"
                 android:textColor="@android:color/white"
                 android:textSize="10sp"
                 tools:elevation="8dp"/>
@@ -108,7 +83,7 @@
                 android:layout_margin="8dp"
                 android:background="@color/colorPrimaryDark"
                 android:padding="8dp"
-                android:text="Местоположение в андроид"
+                android:text="Местоположение"
                 android:textColor="@android:color/white"
                 android:textSize="10sp"
                 tools:elevation="8dp"/>

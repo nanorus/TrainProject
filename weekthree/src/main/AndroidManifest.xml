@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".routes.RoutesActivity">
+        </activity>
+        <activity android:name=".routes.RouteDetailsActivity">
+        </activity>
+        <activity android:name=".CustomComponentActivity">
+        </activity>
     </application>
 
 </manifest>
