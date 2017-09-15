@@ -103,33 +103,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             System.out.println(b3 + " != " + b2);
     }
 
-    /*
+/*
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable("testParcelable", new ParcelableTestPojo(5, "hello", 8.8));
-        ArrayList<NotSerializableTestClass> notSerializableList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            NotSerializableTestClass notSerClass = new NotSerializableTestClass();
-            notSerClass.createNotSerializableClass();
-            notSerializableList.add(notSerClass);
-        }
-
-        outState.putSerializable("testSerializable", new SerializableTestPojo(5, "hello", 8.8, mImagesDpi, notSerializableList));
+        HashMap<Integer, NotSerializableTestClass> hashMap  = new HashMap<>();
+        hashMap.put(0, new NotSerializableTestClass());
+        outState.putSerializable("testSerializable", hashMap);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-          ParcelableTestPojo parcelableTestPojo = savedInstanceState.getParcelable("testParcelable");
-          Toast.makeText(this, parcelableTestPojo.getB() + ": " + String.valueOf(parcelableTestPojo.getA()) + ", " + String.valueOf(parcelableTestPojo.getC()), Toast.LENGTH_SHORT).show();
-        SerializableTestPojo serializableTestPojo = (SerializableTestPojo) savedInstanceState.getSerializable("testSerializable");
-        Toast.makeText(this, serializableTestPojo.getB() + ": " + String.valueOf(serializableTestPojo.getA()) + ", " + String.valueOf(serializableTestPojo.getC()) +
-                        "\n" + serializableTestPojo.getImagesDpi().getText().toString() + "\n" +
-                        String.valueOf(serializableTestPojo.getNotSerializableTestClass().get(0).getI()) + " " +
-                        String.valueOf(serializableTestPojo.getNotSerializableTestClass().get(0).getNotSerializableTestClass().getI())
-                , Toast.LENGTH_SHORT).show();
+        HashMap<Integer, NotSerializableTestClass> hashMap = (   HashMap<Integer, NotSerializableTestClass>) savedInstanceState.getSerializable("testSerializable");
+        Toast.makeText(this,String.valueOf((NotSerializableTestClass) hashMap.get(0).getI()) , Toast.LENGTH_SHORT).show();
     }
-    */
+*/
 
 }

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.weekthree.MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/main_btn_task_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@color/colorPrimaryDark"
+                android:padding="8dp"
+                android:text="2 фрагмента - список и детальная информация, запрос в сервисе и возврат результата обратно"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                tools:elevation="8dp"/>
+
+            <Button
+                android:id="@+id/main_btn_task_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@color/colorPrimaryDark"
+                android:padding="8dp"
+                android:text="Сохранение состояния окна и модели на onSaveInstanceState"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                tools:elevation="8dp"/>
+
+            <Button
+                android:id="@+id/main_btn_task_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@color/colorPrimaryDark"
+                android:padding="8dp"
+                android:text="realm "
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                tools:elevation="8dp"/>
+
+            <Button
+                android:id="@+id/main_btn_task_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/main_btn_task_3"
+                android:layout_margin="8dp"
+                android:background="@color/colorPrimaryDark"
+                android:padding="8dp"
+                android:text="Адаптивный дизайн для планшета и телефона"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                tools:elevation="8dp"/>
+
+            <Button
+                android:id="@+id/main_btn_task_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@color/colorPrimaryDark"
+                android:padding="8dp"
+                android:text="SQlite"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                tools:elevation="8dp"/>
+
+            <Button
+                android:id="@+id/main_btn_task_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@color/colorPrimaryDark"
+                android:padding="8dp"
+                android:text="Shared Preferences "
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                tools:elevation="8dp"/>
+
+            <Button
+                android:id="@+id/main_btn_task_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@color/colorPrimaryDark"
+                android:padding="8dp"
+                android:text="интернет соединение"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                tools:elevation="8dp"/>
+
+            <Button
+                android:id="@+id/main_btn_task_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@color/colorPrimaryDark"
+                android:padding="8dp"
+                android:text="Местоположение в андроид"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                tools:elevation="8dp"/>
+
+            <Button
+                android:id="@+id/main_btn_task_9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@color/colorPrimaryDark"
+                android:padding="8dp"
+                android:text="Акселерометр"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                tools:elevation="8dp"/>
+
+            <Button
+                android:id="@+id/main_btn_task_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@color/colorPrimaryDark"
+                android:padding="8dp"
+                android:text="камера"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                tools:elevation="8dp"/>
+
+            <Button
+                android:id="@+id/main_btn_task_11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@color/colorPrimaryDark"
+                android:padding="8dp"
+                android:text="свой компонент"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                tools:elevation="8dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
