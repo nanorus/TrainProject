@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
             case R.id.main_btn_task_preferences:
-
+                intent = new Intent(this, PreferencesActivity.class);
                 break;
             case R.id.main_btn_task_internet_connection:
 
