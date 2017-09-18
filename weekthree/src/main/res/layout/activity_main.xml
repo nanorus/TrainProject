@@ -17,111 +17,111 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/main_btn_task_1"
+                android:id="@+id/main_btn_task_query"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="@color/colorPrimaryDark"
                 android:padding="8dp"
-                android:text="Маршруты. Запрос. Список. Фрагменты. Адаптивный дизайн. Сохранение состояния."
+                android:text="1. Маршруты. Запрос. Список. Фрагменты. Адаптивный дизайн. Сохранение состояния."
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 tools:elevation="8dp"/>
 
             <Button
-                android:id="@+id/main_btn_task_3"
+                android:id="@+id/main_btn_task_realm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="@color/colorPrimaryDark"
                 android:padding="8dp"
-                android:text="realm "
+                android:text="2. realm "
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 tools:elevation="8dp"/>
 
             <Button
-                android:id="@+id/main_btn_task_5"
+                android:id="@+id/main_btn_task_sqlite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="@color/colorPrimaryDark"
                 android:padding="8dp"
-                android:text="SQlite"
+                android:text="3. SQlite"
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 tools:elevation="8dp"/>
 
             <Button
-                android:id="@+id/main_btn_task_6"
+                android:id="@+id/main_btn_task_preferences"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="@color/colorPrimaryDark"
                 android:padding="8dp"
-                android:text="Shared Preferences "
+                android:text="4. Shared Preferences "
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 tools:elevation="8dp"/>
 
             <Button
-                android:id="@+id/main_btn_task_7"
+                android:id="@+id/main_btn_task_internet_connection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="@color/colorPrimaryDark"
                 android:padding="8dp"
-                android:text="интернет соединение"
+                android:text="5. интернет соединение"
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 tools:elevation="8dp"/>
 
             <Button
-                android:id="@+id/main_btn_task_8"
+                android:id="@+id/main_btn_task_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="@color/colorPrimaryDark"
                 android:padding="8dp"
-                android:text="Местоположение"
+                android:text="6. Местоположение"
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 tools:elevation="8dp"/>
 
             <Button
-                android:id="@+id/main_btn_task_9"
+                android:id="@+id/main_btn_task_accelerometer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="@color/colorPrimaryDark"
                 android:padding="8dp"
-                android:text="Акселерометр"
+                android:text="7. Акселерометр"
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 tools:elevation="8dp"/>
 
             <Button
-                android:id="@+id/main_btn_task_10"
+                android:id="@+id/main_btn_task_camera"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="@color/colorPrimaryDark"
                 android:padding="8dp"
-                android:text="камера"
+                android:text="8. камера"
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 tools:elevation="8dp"/>
 
             <Button
-                android:id="@+id/main_btn_task_11"
+                android:id="@+id/main_btn_task_custom_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="@color/colorPrimaryDark"
                 android:padding="8dp"
-                android:text="свой компонент"
+                android:text="9. свой компонент"
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 tools:elevation="8dp"/>
         </LinearLayout>
     </ScrollView>
