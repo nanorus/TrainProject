@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
+import com.example.weekthree.camera.CameraActivity;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
     }
 
     @OnClick({R.id.main_btn_task_query, R.id.main_btn_task_realm, R.id.main_btn_task_sqlite,
@@ -65,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, AccelerometerActivity.class);
                 break;
             case R.id.main_btn_task_camera:
-
+                intent = new Intent(this, CameraActivity.class);
                 break;
             case R.id.main_btn_task_custom_view:
                 intent = new Intent(this, CustomViewActivity.class);
