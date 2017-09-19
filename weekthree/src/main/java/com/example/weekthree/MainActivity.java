@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
             case R.id.main_btn_task_custom_view:
-
+                intent = new Intent(this, CustomViewActivity.class);
                 break;
         }
         if (intent != null) {

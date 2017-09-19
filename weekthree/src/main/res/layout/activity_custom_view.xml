@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="com.example.weekthree.CustomViewActivity">
+
+    <com.example.weekthree.custom_view.MyCustomView
+        android:id="@+id/myCustomView_1"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        app:myCustomText1="мой текст 1"
+        app:myCustomText2="мой текст 2"
+        app:myCustomText3="мой текст 3"
+
+        >
+    </com.example.weekthree.custom_view.MyCustomView>
+
+    <com.example.weekthree.custom_view.MyCustomView
+        android:id="@+id/myCustomView_2"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        app:myCustomText1="мой текст 1_2"
+        app:myCustomText2="мой текст 2_2"
+        app:myCustomText3="мой текст 3_2">
+    </com.example.weekthree.custom_view.MyCustomView>
+
+    <com.example.weekthree.custom_view.MyCustomView
+        android:id="@+id/myCustomView_3"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        app:myCustomText1="текст 1_3"
+        app:myCustomText2="текст 2_3"
+        app:myCustomText3="текст 3_3">
+
+    </com.example.weekthree.custom_view.MyCustomView>
+
+</LinearLayout>
