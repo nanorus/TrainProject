@@ -62,6 +62,13 @@ public class DatumPojo {
         this.reservationCount = reservationCount;
     }
 
+    public DatumPojo(int id, String fromCityName, String toCityName, int price) {
+        this.id = id;
+        this.fromCity = new FromCityPojo(0, 0, fromCityName);
+        this.toCity = new ToCityPojo(0, 0, toCityName);
+        this.price = price;
+    }
+
     public int getId() {
         return id;
     }

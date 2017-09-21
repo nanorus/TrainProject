@@ -1,10 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="8dp"
     tools:context=".routes.RouteDetailsActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/activity_route_details_tv_from_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="24dp"
+        android:text="TextView"/>
+
+    <TextView
+        android:id="@+id/activity_route_details_tv_to_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/activity_route_details_tv_from_city"
+        android:text="TextView"/>
+
+    <TextView
+        android:id="@+id/activity_route_details_tv_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/activity_route_details_tv_from_city"
+        android:layout_alignRight="@+id/activity_route_details_tv_from_city"
+        android:layout_below="@+id/activity_route_details_tv_from_city"
+        android:layout_marginTop="38dp"
+        android:text="TextView"/>
+
+    <TextView
+        android:id="@+id/activity_route_details_tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/activity_route_details_tv_id"
+        android:text="TextView"/>
+</RelativeLayout>
