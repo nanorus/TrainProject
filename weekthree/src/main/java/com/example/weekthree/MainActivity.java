@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
+import com.example.weekthree.routes.RoutesActivity;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = null;
         switch (button.getId()) {
             case R.id.main_btn_task_query:
-
+                intent = new Intent(this, RoutesActivity.class);
                 break;
             case R.id.main_btn_task_realm:
 

@@ -1,4 +1,4 @@
-package com.example.weekthree.data;
+package com.example.weekthree.data.db;
 
 public class DatabaseManager {
 
