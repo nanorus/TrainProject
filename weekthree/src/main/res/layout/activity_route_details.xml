@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp"
-    tools:context=".routes.RouteDetailsActivity">
+    tools:context=".routes.details.RouteDetailsActivity">
 
     <TextView
         android:id="@+id/activity_route_details_tv_from_city"

@@ -1,4 +1,4 @@
-package com.example.weekthree.routes;
+package com.example.weekthree.routes.details;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -39,9 +39,6 @@ public class RouteDetailsActivity extends AppCompatActivity {
         tvFromCity.setText(data.getFromCity().getName());
         tvToCity.setText(data.getToCity().getName());
         tvPrice.setText(String.valueOf(data.getPrice()));
-
-        // get route by id
-        // show  route info
 
     }
 }

@@ -1,13 +1,16 @@
-package com.example.weekthree.routes;
+package com.example.weekthree.routes.list;
 
-import android.content.Intent;
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -31,20 +34,19 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class RoutesActivity extends AppCompatActivity {
 
-    SaveRoutesFragment mSaveRoutesFragment;
-    DataManager mDataManager;
+public class RoutesFragment extends Fragment {
 
-    @BindView(R.id.activity_routes_rv_routes)
+    @BindView(R.id.fragment_routes_rv_routes)
     RecyclerView mRecyclerViewRoutes;
-    @BindView(R.id.activity_routes_rl_progress)
+    @BindView(R.id.fragment_routes_rl_progress)
     RelativeLayout mRlProgress;
-    @BindView(R.id.activity_routes_pb_progress)
+    @BindView(R.id.fragment_routes_pb_progress)
     ProgressBar mPbProgress;
-    @BindView(R.id.activity_routes_swipe)
+    @BindView(R.id.fragment_routes_swipe)
     SwipeRefreshLayout mSwipe;
 
+    DataManager mDataManager;
     RoutesAdapter mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
 
@@ -53,48 +55,72 @@ public class RoutesActivity extends AppCompatActivity {
 
     List<DatumPojo> mData;
 
-    String SAVE_ROUTES_FRAGMENT_TAG = "SAVE_ROUTES_FRAGMENT";
+    private OnFragmentInteractionListener mListener;
+
+    public RoutesFragment() {
+        // Required empty public constructor
+    }
+
+    public static RoutesFragment newInstance() {
+        RoutesFragment fragment = new RoutesFragment();
+        return fragment;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_routes);
-        ButterKnife.bind(this);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_routes, container, false);
+        ButterKnife.bind(this, view);
+
         initDependencies();
         initListeners();
 
-        if (isActivityRecreated()) {
-            // restore data
-            mData = mSaveRoutesFragment.getDatumPojos();
-            mAdapter = new RoutesAdapter(mData);
-            mRecyclerViewRoutes.setAdapter(mAdapter);
-            if (mData == null || mData.size() == 0) {
-                loadOnline();
-            }
+
+        mData = new ArrayList<>();
+        mData.addAll(mDataManager.loadData(DataManager.DB_TYPE_SQLITE));
+
+        mAdapter = new RoutesAdapter(mData);
+        mRecyclerViewRoutes.setAdapter(mAdapter);
+
+        if (mData == null || mData.size() == 0)
+            loadOnline();
+
+        return view;
+    }
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
         } else {
-            // load data
-            mData = new ArrayList<>();
-            mData.addAll(mDataManager.loadData(DataManager.DB_TYPE_SQLITE));
-
-            mAdapter = new RoutesAdapter(mData);
-            mRecyclerViewRoutes.setAdapter(mAdapter);
-
-            if (mData == null || mData.size() == 0)
-                loadOnline();
-
-            mSaveRoutesFragment = new SaveRoutesFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .add(mSaveRoutesFragment, SAVE_ROUTES_FRAGMENT_TAG).commit();
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
         }
+    }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+        if (mRequestPojoSubscription != null && !mRequestPojoSubscription.isUnsubscribed())
+        mRequestPojoSubscription.unsubscribe();
 
+        RecyclerViewItemClickSupport.removeFrom(mRecyclerViewRoutes);
     }
 
     private void initDependencies() {
         showLoadingProgressbar(false);
 
         mDataManager = new DataManager();
-        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         Retrofit retrofit = RoutesRetrofitClient.getInstance();
         GetAllRoutesService service = retrofit.create(GetAllRoutesService.class);
         mRequestPojoSingle = service.getAllRoutesRequestPojoSingle();
@@ -110,34 +136,12 @@ public class RoutesActivity extends AppCompatActivity {
 
         RecyclerViewItemClickSupport.addTo(mRecyclerViewRoutes).setOnItemClickListener(
                 (recyclerView, position, v) -> {
-                    goRouteDetailsActivity(mData.get(position).getId());
-                    Toast.makeText(this, mData.get(position).getFromCity().getName(), Toast.LENGTH_SHORT).show();
+                    mListener.goRouteDetailsActivity(mData.get(position).getId());
+                    Toast.makeText(this.getContext(), mData.get(position).getFromCity().getName(),
+                            Toast.LENGTH_SHORT).show();
                 }
         );
     }
-
-    private void goRouteDetailsActivity(int id) {
-        Intent intent = new Intent(RoutesActivity.this, RouteDetailsActivity.class);
-        intent.putExtra("id", id);
-        startActivity(intent);
-    }
-
-    private boolean isActivityRecreated() {
-        mSaveRoutesFragment = (SaveRoutesFragment) getSupportFragmentManager()
-                .findFragmentByTag(SAVE_ROUTES_FRAGMENT_TAG);
-        return mSaveRoutesFragment != null;
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mRequestPojoSubscription != null && !mRequestPojoSubscription.isUnsubscribed())
-            mRequestPojoSubscription.unsubscribe();
-
-        mSaveRoutesFragment.setDatumPojos(mData);
-        RecyclerViewItemClickSupport.removeFrom(mRecyclerViewRoutes);
-    }
-
     private void loadOnline() {
         if (mRequestPojoSubscription != null && !mRequestPojoSubscription.isUnsubscribed())
             mRequestPojoSubscription.unsubscribe();
@@ -147,6 +151,8 @@ public class RoutesActivity extends AppCompatActivity {
                 .doOnSubscribe(() -> showLoadingProgressbar(true))
                 .subscribe(
                         requestPojo -> {
+                            Toast.makeText(this.getContext(), "data received: " + requestPojo.getData().get(0).getFromCity().getName(),
+                                    Toast.LENGTH_SHORT).show();
                             mDataManager.saveData(requestPojo.getData(), DataManager.DB_TYPE_SQLITE);
                             mData.clear();
                             mData.addAll(requestPojo.getData());
@@ -158,8 +164,6 @@ public class RoutesActivity extends AppCompatActivity {
                             showLoadingProgressbar(false);
                         });
     }
-
-
     private void showLoadingProgressbar(boolean willShow) {
         if (willShow) {
             if (!mSwipe.isRefreshing())
@@ -174,13 +178,8 @@ public class RoutesActivity extends AppCompatActivity {
         }
     }
 
-/*
-private void saveData(data){
 
-}
-
-private data restoreData(){
-
-}
-*/
+    public interface OnFragmentInteractionListener {
+        void goRouteDetailsActivity(int id);
+    }
 }

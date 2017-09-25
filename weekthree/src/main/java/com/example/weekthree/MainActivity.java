@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
-import com.example.weekthree.routes.RoutesActivity;
+import com.example.weekthree.routes.list.RoutesActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
