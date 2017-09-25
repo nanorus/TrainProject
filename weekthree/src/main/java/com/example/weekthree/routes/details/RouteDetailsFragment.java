@@ -38,18 +38,18 @@ public class RouteDetailsFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static RouteDetailsFragment newInstance(int id) {
+    public static RouteDetailsFragment newInstance() {
         RouteDetailsFragment fragment = new RouteDetailsFragment();
-        Bundle args = new Bundle();
-        args.putInt("id", id);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        id = getArguments().getInt("id", 0);
+        if (getArguments() != null)
+            id = getArguments().getInt("id", -1);
+        else
+            id = -1;
     }
 
     @Override
@@ -65,15 +65,25 @@ public class RouteDetailsFragment extends Fragment {
 
         mDataManager = new DataManager();
 
-        DatumPojo data = mDataManager.loadDetailsData(id, DataManager.DB_TYPE_SQLITE);
+        clearFields();
 
-        tvId.setText(String.valueOf(data.getId()));
-        tvFromCity.setText(data.getFromCity().getName());
-        tvToCity.setText(data.getToCity().getName());
-        tvPrice.setText(String.valueOf(data.getPrice()));
+        if (id != -1) {
+            DatumPojo data = mDataManager.loadDetailsData(id, DataManager.DB_TYPE_SQLITE);
 
+            tvId.setText(String.valueOf(data.getId()));
+            tvFromCity.setText(data.getFromCity().getName());
+            tvToCity.setText(data.getToCity().getName());
+            tvPrice.setText(String.valueOf(data.getPrice()));
+        }
 
         return view;
+    }
+
+    private void clearFields() {
+        tvId.setText("");
+        tvFromCity.setText("");
+        tvToCity.setText("");
+        tvPrice.setText("");
     }
 
 
@@ -82,7 +92,8 @@ public class RouteDetailsFragment extends Fragment {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
-        } else {
+        }
+        else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
@@ -92,6 +103,15 @@ public class RouteDetailsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void showRouteDetails(int id) {
+        DatumPojo data = mDataManager.loadDetailsData(id, DataManager.DB_TYPE_SQLITE);
+
+        tvId.setText(String.valueOf(data.getId()));
+        tvFromCity.setText(data.getFromCity().getName());
+        tvToCity.setText(data.getToCity().getName());
+        tvPrice.setText(String.valueOf(data.getPrice()));
     }
 
     public interface OnFragmentInteractionListener {

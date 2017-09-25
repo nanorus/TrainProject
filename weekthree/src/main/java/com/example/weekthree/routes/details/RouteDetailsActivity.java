@@ -11,7 +11,7 @@ import com.example.weekthree.data.api.pojo.DatumPojo;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RouteDetailsActivity extends AppCompatActivity {
+public class RouteDetailsActivity extends AppCompatActivity implements  RouteDetailsFragment.OnFragmentInteractionListener {
     private int id = 0;
     DataManager mDataManager;
 

@@ -111,7 +111,7 @@ public class RoutesFragment extends Fragment {
         super.onDetach();
         mListener = null;
         if (mRequestPojoSubscription != null && !mRequestPojoSubscription.isUnsubscribed())
-        mRequestPojoSubscription.unsubscribe();
+            mRequestPojoSubscription.unsubscribe();
 
         RecyclerViewItemClickSupport.removeFrom(mRecyclerViewRoutes);
     }
@@ -134,14 +134,18 @@ public class RoutesFragment extends Fragment {
     private void initListeners() {
         mSwipe.setOnRefreshListener(this::loadOnline);
 
-        RecyclerViewItemClickSupport.addTo(mRecyclerViewRoutes).setOnItemClickListener(
-                (recyclerView, position, v) -> {
-                    mListener.goRouteDetailsActivity(mData.get(position).getId());
-                    Toast.makeText(this.getContext(), mData.get(position).getFromCity().getName(),
-                            Toast.LENGTH_SHORT).show();
-                }
-        );
+        if (mListener.isTablet() && mListener.isLandscape()) {
+            RecyclerViewItemClickSupport.addTo(mRecyclerViewRoutes).setOnItemClickListener(
+                    (recyclerView, position, v) -> mListener.showRouteDetails(mData.get(position).getId())
+            );
+        } else {
+            RecyclerViewItemClickSupport.addTo(mRecyclerViewRoutes).setOnItemClickListener(
+                    (recyclerView, position, v) -> mListener.goRouteDetailsActivity(mData.get(position).getId())
+            );
+        }
+
     }
+
     private void loadOnline() {
         if (mRequestPojoSubscription != null && !mRequestPojoSubscription.isUnsubscribed())
             mRequestPojoSubscription.unsubscribe();
@@ -151,8 +155,6 @@ public class RoutesFragment extends Fragment {
                 .doOnSubscribe(() -> showLoadingProgressbar(true))
                 .subscribe(
                         requestPojo -> {
-                            Toast.makeText(this.getContext(), "data received: " + requestPojo.getData().get(0).getFromCity().getName(),
-                                    Toast.LENGTH_SHORT).show();
                             mDataManager.saveData(requestPojo.getData(), DataManager.DB_TYPE_SQLITE);
                             mData.clear();
                             mData.addAll(requestPojo.getData());
@@ -164,6 +166,7 @@ public class RoutesFragment extends Fragment {
                             showLoadingProgressbar(false);
                         });
     }
+
     private void showLoadingProgressbar(boolean willShow) {
         if (willShow) {
             if (!mSwipe.isRefreshing())
@@ -181,5 +184,11 @@ public class RoutesFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void goRouteDetailsActivity(int id);
+
+        boolean isTablet();
+
+        boolean isLandscape();
+
+        void showRouteDetails(int id);
     }
 }
