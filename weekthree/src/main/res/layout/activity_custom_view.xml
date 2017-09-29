@@ -19,23 +19,14 @@
         >
     </com.example.weekthree.custom_view.MyCustomView>
 
-    <com.example.weekthree.custom_view.MyCustomView
-        android:id="@+id/myCustomView_2"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        app:myCustomText1="мой текст 1_2"
-        app:myCustomText2="мой текст 2_2"
-        app:myCustomText3="мой текст 3_2">
-    </com.example.weekthree.custom_view.MyCustomView>
-
-    <com.example.weekthree.custom_view.MyCustomView
-        android:id="@+id/myCustomView_3"
+    <com.example.weekthree.custom_view.ShrinkedTextView
+        android:id="@+id/activity_custom_view_tv_shrinked"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        app:myCustomText1="текст 1_3"
-        app:myCustomText2="текст 2_3"
-        app:myCustomText3="текст 3_3">
+        android:text="Каждый охотник желает знать где сидит фазан"
 
-    </com.example.weekthree.custom_view.MyCustomView>
+        app:autoShrink="true"
+        app:lineBreak="center"
+        app:minShrinkSize="9"/>
 
 </LinearLayout>

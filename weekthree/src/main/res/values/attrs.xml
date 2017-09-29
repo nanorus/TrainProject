@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="MyCustomView">
-        <attr name="myCustomText1" format="string" />
-        <attr name="myCustomText2" format="string" />
-        <attr name="myCustomText3" format="string" />
+        <attr name="myCustomText1" format="string"/>
+        <attr name="myCustomText2" format="string"/>
+        <attr name="myCustomText3" format="string"/>
     </declare-styleable>
+
+    <declare-styleable name="ShrinkedTextView">
+        <attr name="minShrinkSize" format="float"/>
+        <attr name="autoShrink" format="boolean"/>
+        <attr name="lineBreak">
+            <flag name="left" value="1"/>
+            <flag name="center" value="2"/>
+            <flag name="right" value="3"/>
+            <flag name="none" value="0"/>
+        </attr>
+    </declare-styleable>
+
 </resources>

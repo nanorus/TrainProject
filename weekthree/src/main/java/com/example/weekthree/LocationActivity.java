@@ -15,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
@@ -31,6 +33,8 @@ public class LocationActivity extends AppCompatActivity {
 
     private LocationManager locationManager;
     StringBuilder location;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -15,10 +15,6 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.main_btn_task_query)
     Button btnQuery;
-    @BindView(R.id.main_btn_task_realm)
-    Button btnRealm;
-    @BindView(R.id.main_btn_task_sqlite)
-    Button btnSqlite;
     @BindView(R.id.main_btn_task_preferences)
     Button btnPreferences;
     @BindView(R.id.main_btn_task_internet_connection)
@@ -40,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.main_btn_task_query, R.id.main_btn_task_realm, R.id.main_btn_task_sqlite,
+    @OnClick({R.id.main_btn_task_query,
             R.id.main_btn_task_preferences, R.id.main_btn_task_internet_connection, R.id.main_btn_task_location,
             R.id.main_btn_task_accelerometer, R.id.main_btn_task_camera, R.id.main_btn_task_custom_view})
     public void onClickTaskButton(Button button) {
@@ -48,12 +44,6 @@ public class MainActivity extends AppCompatActivity {
         switch (button.getId()) {
             case R.id.main_btn_task_query:
                 intent = new Intent(this, RoutesActivity.class);
-                break;
-            case R.id.main_btn_task_realm:
-
-                break;
-            case R.id.main_btn_task_sqlite:
-
                 break;
             case R.id.main_btn_task_preferences:
                 intent = new Intent(this, PreferencesActivity.class);

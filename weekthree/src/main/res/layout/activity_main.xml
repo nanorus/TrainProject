@@ -29,30 +29,6 @@
                 tools:elevation="8dp"/>
 
             <Button
-                android:id="@+id/main_btn_task_realm"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@color/colorPrimaryDark"
-                android:padding="8dp"
-                android:text="2. realm "
-                android:textColor="@android:color/white"
-                android:textSize="11sp"
-                tools:elevation="8dp"/>
-
-            <Button
-                android:id="@+id/main_btn_task_sqlite"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@color/colorPrimaryDark"
-                android:padding="8dp"
-                android:text="3. SQlite"
-                android:textColor="@android:color/white"
-                android:textSize="11sp"
-                tools:elevation="8dp"/>
-
-            <Button
                 android:id="@+id/main_btn_task_preferences"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
