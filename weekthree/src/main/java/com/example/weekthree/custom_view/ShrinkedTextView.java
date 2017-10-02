@@ -36,6 +36,7 @@ public class ShrinkedTextView extends AppCompatTextView {
         isAutoShrink = typedArray.getBoolean(R.styleable.ShrinkedTextView_autoShrink, false);
         lineBreak = typedArray.getInt(R.styleable.ShrinkedTextView_lineBreak, LINE_BREAK_NONE);
         typedArray.recycle();
+        setMaxLines(1);
     }
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {

@@ -1,7 +1,7 @@
 package com.example.weekthree.data;
 
 import com.example.weekthree.data.api.pojo.DatumPojo;
-import com.example.weekthree.data.db.DatabaseManager;
+import com.example.weekthree.data.db.IDatabaseManager;
 
 import java.util.List;
 
@@ -9,52 +9,25 @@ public class DataManager {
 
     public static final int DB_TYPE_SQLITE = 0;
     public static final int DB_TYPE_REALM = 1;
-
-    DatabaseManager mDatabaseManager;
+    private IDatabaseManager mDatabaseManager;
+    private DataManagerFactory mDataManagerFactory;
 
     public DataManager() {
-        mDatabaseManager = new DatabaseManager();
+        mDataManagerFactory = new DataManagerFactory();
+        mDatabaseManager = mDataManagerFactory.getDataManager();
     }
 
-    public void saveData(List<DatumPojo> data, int dbType) {
-        switch (dbType) {
-            case DB_TYPE_SQLITE:
-                mDatabaseManager.saveDataIntoSqlite(data);
-                break;
-            case DB_TYPE_REALM:
-
-                break;
-        }
+    public void saveData(List<DatumPojo> data) {
+        mDatabaseManager.saveData(data);
     }
 
-    public List<DatumPojo> loadData(int dbType) {
-        List<DatumPojo> datumPojos = null;
-        switch (dbType) {
-            case DB_TYPE_SQLITE:
-                datumPojos = mDatabaseManager.loadDataFromSqlite();
-                break;
-            case DB_TYPE_REALM:
-
-                break;
-        }
-        return datumPojos;
+    public List<DatumPojo> loadData() {
+        return mDatabaseManager.loadData();
     }
 
-    public DatumPojo loadDetailsData(int id, int dbType){
-        DatumPojo data = null;
-        switch (dbType) {
-            case DB_TYPE_SQLITE:
-                data = mDatabaseManager.loadDetailsDataFromSqlite(id);
-                break;
-            case DB_TYPE_REALM:
-
-                break;
-        }
-        return data;
+    public DatumPojo loadDetailsData(int id) {
+        return mDatabaseManager.loadDetailsData(id);
     }
 
-    // loadData(dbType);
-    // saveData(dbType);
-    // clearData(dbType);
 
 }

@@ -1,4 +1,4 @@
-package com.example.weekthree.data.db;
+package com.example.weekthree.data.db.sqlite;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -6,23 +6,24 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.weekthree.App;
 import com.example.weekthree.data.api.pojo.DatumPojo;
-import com.example.weekthree.data.db.sqlite.DBHelper;
+import com.example.weekthree.data.db.IDatabaseManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseManager {
+public class SQLiteDatabaseManager implements IDatabaseManager {
     SQLiteDatabase mWritableSQLiteDatabase;
     SQLiteDatabase mReadableSQLiteDatabase;
     DBHelper mDBHelper;
 
-    public DatabaseManager() {
+    public SQLiteDatabaseManager() {
         mDBHelper = new DBHelper(App.getInstance().getApplicationContext());
         mWritableSQLiteDatabase = mDBHelper.getWritableDatabase();
         mReadableSQLiteDatabase = mDBHelper.getReadableDatabase();
     }
 
-    public void saveDataIntoSqlite(List<DatumPojo> data) {
+    @Override
+    public void saveData(List<DatumPojo> data) {
         ContentValues contentValues = new ContentValues();
         for (DatumPojo datumPojo : data) {
             contentValues.put(DBHelper.COLUMN_ROUTES_ID, datumPojo.getId());
@@ -34,7 +35,8 @@ public class DatabaseManager {
         contentValues.clear();
     }
 
-    public List<DatumPojo> loadDataFromSqlite() {
+    @Override
+    public List<DatumPojo> loadData() {
         List<DatumPojo> datumPojos = new ArrayList<>();
 
         Cursor cursor = mReadableSQLiteDatabase.query(DBHelper.TABLE_ROUTES_NAME, new String[]{
@@ -59,7 +61,8 @@ public class DatabaseManager {
     }
 
 
-    public DatumPojo loadDetailsDataFromSqlite(int id) {
+    @Override
+    public DatumPojo loadDetailsData(int id) {
         DatumPojo data = null;
 
         Cursor cursor = mReadableSQLiteDatabase.query(DBHelper.TABLE_ROUTES_NAME, new String[]{
@@ -80,13 +83,5 @@ public class DatabaseManager {
         cursor.close();
         return data;
     }
-
-    // loadDataFromSqlite(from, to);
-    // saveDataIntoSqlite();
-    // clearSqliteDb();
-
-    // loadFromRealm(from, to);
-    // saveIntoRealm();
-    // clear RealmDv();
 
 }

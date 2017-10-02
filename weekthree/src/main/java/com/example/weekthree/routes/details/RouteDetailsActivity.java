@@ -33,7 +33,7 @@ public class RouteDetailsActivity extends AppCompatActivity implements  RouteDet
 
         mDataManager = new DataManager();
 
-        DatumPojo data = mDataManager.loadDetailsData(id, DataManager.DB_TYPE_SQLITE);
+        DatumPojo data = mDataManager.loadDetailsData(id);
 
         tvId.setText(String.valueOf(data.getId()));
         tvFromCity.setText(data.getFromCity().getName());

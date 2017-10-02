@@ -23,7 +23,7 @@
                 android:layout_margin="8dp"
                 android:background="@color/colorPrimaryDark"
                 android:padding="8dp"
-                android:text="1. Маршруты. Запрос. Список. Фрагменты. Адаптивный дизайн. Сохранение состояния."
+                android:text="1. Маршруты"
                 android:textColor="@android:color/white"
                 android:textSize="11sp"
                 tools:elevation="8dp"/>

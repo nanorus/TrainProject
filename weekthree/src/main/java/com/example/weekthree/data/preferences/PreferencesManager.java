@@ -11,8 +11,9 @@ public class PreferencesManager {
     private static SharedPreferences sPreferences;
 
     public PreferencesManager() {
-        sPreferences = App.getInstance().getApplicationContext()
-                .getSharedPreferences("preferences", Context.MODE_PRIVATE);
+        if (sPreferences == null)
+            sPreferences = App.getInstance().getApplicationContext()
+                    .getSharedPreferences("preferences", Context.MODE_PRIVATE);
     }
 
     public static PreferencesManager getInstance() {
@@ -21,12 +22,19 @@ public class PreferencesManager {
         return sInstance;
     }
 
-    public void saveMyString(String string) {
+    public void setMyString(String string) {
         sPreferences.edit().putString("my_string", string).apply();
     }
 
-    public String loadMyString() {
+    public String getMyString() {
         return sPreferences.getString("my_string", "null");
     }
 
+    public void setDbType(int dbType) {
+        sPreferences.edit().putInt("db_type", dbType).apply();
+    }
+
+    public int getDbType() {
+        return sPreferences.getInt("db_type", 0);
+    }
 }

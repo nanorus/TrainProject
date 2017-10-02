@@ -1,55 +1,41 @@
 package com.example.weekthree.routes.list;
 
 import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
+import android.widget.SeekBar;
 
 import com.example.weekthree.R;
 import com.example.weekthree.data.DataManager;
-import com.example.weekthree.data.api.RoutesRetrofitClient;
-import com.example.weekthree.data.api.pojo.DatumPojo;
-import com.example.weekthree.data.api.pojo.RequestPojo;
-import com.example.weekthree.data.api.service.GetAllRoutesService;
+import com.example.weekthree.data.preferences.PreferencesManager;
 import com.example.weekthree.routes.details.RouteDetailsActivity;
-import com.example.weekthree.routes.SaveRoutesFragment;
 import com.example.weekthree.routes.details.RouteDetailsFragment;
-import com.example.weekthree.ui.RecyclerViewItemClickSupport;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Retrofit;
-import rx.Single;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 
 public class RoutesActivity extends AppCompatActivity implements RoutesFragment.OnFragmentInteractionListener, RouteDetailsFragment.OnFragmentInteractionListener {
+
+    static final int SEEKBAR_PROGRESS_SQLITE = 0;
+    static final int SEEKBAR_PROGRESS_REALM = 1;
 
     @BindView(R.id.activity_routes_frame_routes_list)
     FrameLayout mRoutesListFrameLayout;
     @Nullable
     @BindView(R.id.activity_routes_frame_route_details)
     FrameLayout mRouteDetailsFrameLayout;
+    @BindView(R.id.seekBar)
+    SeekBar mSeekBar;
 
     RoutesFragment mRoutesFragment;
     RouteDetailsFragment routeDetailsFragment;
+
+    PreferencesManager mPreferencesManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +54,31 @@ public class RoutesActivity extends AppCompatActivity implements RoutesFragment.
                     routeDetailsFragment, "TAG_FRAGMENT_ROUTE_DETAILS").commit();
         }
 
+        mPreferencesManager = PreferencesManager.getInstance();
+        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                switch (i) {
+                    case SEEKBAR_PROGRESS_SQLITE:
+                        mPreferencesManager.setDbType(DataManager.DB_TYPE_SQLITE);
+                        break;
+                    case SEEKBAR_PROGRESS_REALM:
+                        mPreferencesManager.setDbType(DataManager.DB_TYPE_REALM);
+                        break;
+                }
+                mRoutesFragment.changeDataManager();
+            }
 
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     @Override
@@ -94,14 +104,4 @@ public class RoutesActivity extends AppCompatActivity implements RoutesFragment.
         return getResources().getConfiguration().orientation == ORIENTATION_LANDSCAPE;
     }
 
-
-/*
-private void saveData(data){
-
-}
-
-private data restoreData(){
-
-}
-*/
 }

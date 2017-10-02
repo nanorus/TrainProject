@@ -1,7 +1,6 @@
 package com.example.weekthree.routes.list;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -21,6 +20,7 @@ import com.example.weekthree.data.api.RoutesRetrofitClient;
 import com.example.weekthree.data.api.pojo.DatumPojo;
 import com.example.weekthree.data.api.pojo.RequestPojo;
 import com.example.weekthree.data.api.service.GetAllRoutesService;
+import com.example.weekthree.data.preferences.PreferencesManager;
 import com.example.weekthree.ui.RecyclerViewItemClickSupport;
 
 import java.util.ArrayList;
@@ -52,6 +52,7 @@ public class RoutesFragment extends Fragment {
 
     Single<RequestPojo> mRequestPojoSingle;
     Subscription mRequestPojoSubscription;
+    PreferencesManager mPreferencesManager;
 
     List<DatumPojo> mData;
 
@@ -69,6 +70,7 @@ public class RoutesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mPreferencesManager = PreferencesManager.getInstance();
     }
 
     @Override
@@ -81,9 +83,8 @@ public class RoutesFragment extends Fragment {
         initDependencies();
         initListeners();
 
-
         mData = new ArrayList<>();
-        mData.addAll(mDataManager.loadData(DataManager.DB_TYPE_SQLITE));
+        mData.addAll(mDataManager.loadData());
 
         mAdapter = new RoutesAdapter(mData);
         mRecyclerViewRoutes.setAdapter(mAdapter);
@@ -131,6 +132,14 @@ public class RoutesFragment extends Fragment {
         mRecyclerViewRoutes.addItemDecoration(dividerItemDecoration);
     }
 
+    public void changeDataManager() {
+        mDataManager = new DataManager();
+        Toast.makeText(getActivity(), "DB changed: " +
+                        ((mPreferencesManager.getDbType() == DataManager.DB_TYPE_SQLITE) ? "SQLite" :
+                                (mPreferencesManager.getDbType() == DataManager.DB_TYPE_REALM) ? "Realm" : "null")
+                , Toast.LENGTH_SHORT).show();
+    }
+
     private void initListeners() {
         mSwipe.setOnRefreshListener(this::loadOnline);
 
@@ -155,7 +164,7 @@ public class RoutesFragment extends Fragment {
                 .doOnSubscribe(() -> showLoadingProgressbar(true))
                 .subscribe(
                         requestPojo -> {
-                            mDataManager.saveData(requestPojo.getData(), DataManager.DB_TYPE_SQLITE);
+                            mDataManager.saveData(requestPojo.getData());
                             mData.clear();
                             mData.addAll(requestPojo.getData());
                             mAdapter.notifyDataSetChanged();

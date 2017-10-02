@@ -2,7 +2,6 @@ package com.example.weekthree.routes.details;
 
 import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -68,7 +67,7 @@ public class RouteDetailsFragment extends Fragment {
         clearFields();
 
         if (id != -1) {
-            DatumPojo data = mDataManager.loadDetailsData(id, DataManager.DB_TYPE_SQLITE);
+            DatumPojo data = mDataManager.loadDetailsData(id);
 
             tvId.setText(String.valueOf(data.getId()));
             tvFromCity.setText(data.getFromCity().getName());
@@ -106,7 +105,7 @@ public class RouteDetailsFragment extends Fragment {
     }
 
     public void showRouteDetails(int id) {
-        DatumPojo data = mDataManager.loadDetailsData(id, DataManager.DB_TYPE_SQLITE);
+        DatumPojo data = mDataManager.loadDetailsData(id);
 
         tvId.setText(String.valueOf(data.getId()));
         tvFromCity.setText(data.getFromCity().getName());
