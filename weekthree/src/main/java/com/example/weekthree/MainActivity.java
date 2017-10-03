@@ -7,26 +7,10 @@ import android.widget.Button;
 
 import com.example.weekthree.routes.list.RoutesActivity;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
-
-    @BindView(R.id.main_btn_task_query)
-    Button btnQuery;
-    @BindView(R.id.main_btn_task_preferences)
-    Button btnPreferences;
-    @BindView(R.id.main_btn_task_internet_connection)
-    Button btnInternetConnection;
-    @BindView(R.id.main_btn_task_location)
-    Button btnLocation;
-    @BindView(R.id.main_btn_task_accelerometer)
-    Button btnAccelerometer;
-    @BindView(R.id.main_btn_task_camera)
-    Button btnCamera;
-    @BindView(R.id.main_btn_task_custom_view)
-    Button btnCustomView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, PreferencesActivity.class);
                 break;
             case R.id.main_btn_task_internet_connection:
-
+                intent = new Intent(this, CheckInternetActivity.class);
                 break;
             case R.id.main_btn_task_location:
                 intent = new Intent(this, LocationActivity.class);
