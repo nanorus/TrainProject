@@ -12,4 +12,6 @@ public interface IDatabaseManager {
 
     DatumPojo loadDetailsData(int id);
 
+    void releaseManager();
+
 }

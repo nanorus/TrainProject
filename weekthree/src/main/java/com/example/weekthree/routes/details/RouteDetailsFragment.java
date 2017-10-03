@@ -113,6 +113,12 @@ public class RouteDetailsFragment extends Fragment {
         tvPrice.setText(String.valueOf(data.getPrice()));
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mDataManager.releaseDatabase();
+    }
+
     public interface OnFragmentInteractionListener {
     }
 }

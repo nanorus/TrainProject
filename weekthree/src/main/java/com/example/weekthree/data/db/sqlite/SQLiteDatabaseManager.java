@@ -84,4 +84,9 @@ public class SQLiteDatabaseManager implements IDatabaseManager {
         return data;
     }
 
+    @Override
+    public void releaseManager() {
+
+    }
+
 }

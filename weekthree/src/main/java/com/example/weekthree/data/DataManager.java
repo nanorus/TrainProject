@@ -29,5 +29,8 @@ public class DataManager {
         return mDatabaseManager.loadDetailsData(id);
     }
 
+    public void releaseDatabase(){
+        mDatabaseManager.releaseManager();
+    }
 
 }

@@ -29,7 +29,6 @@ public class RealmDatabaseManager implements IDatabaseManager {
             dataRealm.setPrice(data.get(i).getPrice());
         }
         mRealm.commitTransaction();
-        mRealm.close();
     }
 
     @Override
@@ -44,7 +43,6 @@ public class RealmDatabaseManager implements IDatabaseManager {
                     dataRealmRealmResults.get(0).getPrice()
             ));
         }
-        mRealm.close();
         return datumPojos;
     }
 
@@ -52,7 +50,13 @@ public class RealmDatabaseManager implements IDatabaseManager {
     public DatumPojo loadDetailsData(int id) {
         DataRealm dataRealm = mRealm.where(DataRealm.class)
                 .equalTo("id", id).findAll().get(0);
-        mRealm.close();
         return new DatumPojo((int) dataRealm.getId(), dataRealm.getFromCityName(), dataRealm.getToCityName(), dataRealm.getPrice());
     }
+
+    @Override
+    public void releaseManager() {
+        mRealm.close();
+    }
+
+
 }
